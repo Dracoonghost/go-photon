@@ -1,7 +1,7 @@
 package gossip
 
 // compile SFC with truffle
-//go:generate bash -c "cd ../../photon-sfc && git checkout c1d33c81f74abf82c0e22807f16e609578e10ad8"
+//go:generate bash -c "cd ../../photon-sfc"
 //go:generate bash -c "docker run --name go-photon-sfc-compiler -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../photon-sfc:/src -w /src node:10.5.0 bash -c 'export NPM_CONFIG_PREFIX=~; npm install --no-save; npm install --no-save truffle@5.1.4' && docker commit go-photon-sfc-compiler go-photon-sfc-compiler-image && docker rm go-photon-sfc-compiler"
 //go:generate bash -c "docker run --rm -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../photon-sfc:/src -w /src go-photon-sfc-compiler-image bash -c 'export NPM_CONFIG_PREFIX=~; rm -f /src/build/contracts/*json; npm run build'"
 //go:generate bash -c "cd ./contract/solc && for f in LegacySfcWrapper.json; do jq -j .bytecode $DOLLAR{f} > $DOLLAR{f%.json}.bin; jq -j .deployedBytecode $DOLLAR{f} > $DOLLAR{f%.json}.bin-runtime; jq -c .abi $DOLLAR{f} > $DOLLAR{f%.json}.abi; done"
